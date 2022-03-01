@@ -6,7 +6,7 @@ class CreateBranches < ActiveRecord::Migration[6.1]
       t.string :neighborhood_name
       t.integer :outdoor_number
       t.integer :indoor_number
-      t.integer :postal_code
+      t.string :postal_code
       t.string :country
       t.string :city
       t.references :user, null: false, foreign_key: true

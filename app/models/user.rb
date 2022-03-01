@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :rememberable, :validatable
 
   has_many :branches
+
+  validates :name, presence: true
+  validates :rfc, presence: true, uniqueness: true, format: { with: /\A\d{12,13}\z/ }
+  validates :company_name, presence: true
 end
