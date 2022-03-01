@@ -1,0 +1,14 @@
+<div class="container form-session-container">
+  <div class="bg-white rounder p-5 w-75 shadow-sm">
+    <h2><strong> Nuevo empleado</strong></h2>
+    <%= simple_form_for @employee do |f| %>
+      <%= f.input :name, label: "Nombre", placeholder: "Julio Armando" %>
+      <%= f.input :rfc, label: "RFC", placeholder: "1234567890123" %>
+      <%= f.input :role, label: "Puesto", placeholder: "Encargado" %>
+      <%= f.association :branch, label: "Sucursal", prompt: "Selecciona una tienda" %>
+      <div class="form-actions text-center mt-5">
+        <%= f.submit value: "Añadir sucursal", class: "btn bg-cyan text-white" %>
+      </div>
+    <% end %>
+  </div>
+</div>

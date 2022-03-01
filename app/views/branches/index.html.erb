@@ -1,47 +1,44 @@
 <div class="container mt-4">
 
   <div class="text-end mt-4">
-    <%= link_to "Ingresar sucursal", new_branch_path, class: "btn text-white btn-primary rounded"  %>
+    <%= link_to "Ingresar sucursal", new_branch_path, class: "btn text-white bg-cyan rounded"  %>
+    <%= link_to "Ingresas empleado", new_branch_employee_path, class: "btn text-white bg-cyan rounded" %>
   </div>
 
+  <% if @branches.empty? %>
+    <h2>No hay sucursales disponibles</h2>
+  <% else %>
 
+    <table class="table table-borderless mt-5">
 
-    <% if @branches.empty? %>
-      <h2>No hay sucursales disponibles</h2>
-    <% else %>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th class="text-center">Empleados</th>
+          <th></th>
+        </tr>
+      </thead>
 
-      <table class="table table-borderless mt-5">
-
-        <thead>
+      <tbody>
+        <% @branches.each do |branch| %>
           <tr>
-            <th>Nombre</th>
-            <th>Empleados</th>
-            <th></th>
+            <td><%= branch.name %></td>
+            <td><%= "#{branch.street_name} #{branch.outdoor_number} #{branch.neighborhood_name}, #{branch.city}" %></td>
+            <td class="text-center"><%= branch.branch_employees.count %> <i class="small fas fa-user-alt text-muted"></i></i></td>
+            <td class="text-center">
+              <%= link_to branch_path(branch) do %>
+                <i class="fas fa-eye show-btn"></i>
+              <% end %>
+
+              <%= link_to edit_branch_path(branch) do %>
+                <i class="fas fa-edit mx-3 edit-btn"></i>
+              <% end %>
+            </td>
           </tr>
-        </thead>
-
-        <tbody>
-          <% @branches.each do |branch| %>
-            <tr>
-              <td><%= branch.name %></td>
-              <td class="text-center"><%= branch.branch_employees.count %> <i class="small fas fa-comment text-comments-color"></i></i></td>
-              <td class="text-center">
-                <%= link_to branch_path(branch) do %>
-                  <i class="fas fa-eye show-btn"></i>
-                <% end %>
-
-                <%= link_to edit_branch_path(branch) do %>
-                  <i class="fas fa-edit mx-3 edit-btn"></i>
-                <% end %>
-
-                <%= link_to branch_path(branch), method: 'delete' do %>
-                  <i class="fas fa-trash-alt delete-btn "></i>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 
 </div>
