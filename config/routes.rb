@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  resources :branches, only: %i[index]
+  resources :branches
 end
