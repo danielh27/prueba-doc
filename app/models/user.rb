@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :branches
 
   validates :name, presence: true
-  validates :rfc, presence: true, uniqueness: true, format: { with: /\A\d{12,13}\z/ }
+  validates :rfc, presence: true, uniqueness: true, format: { with: /\A\d{12,13}\z/, message: "debe tener 12 o 13 numeros" }
   validates :company_name, presence: true
 end
