@@ -1,0 +1,18 @@
+<div class="container form-session-container">
+  <div class="bg-white rounder p-5 w-75 shadow-sm">
+    <h2><strong> Nueva sucursal</strong></h2>
+    <%= simple_form_for @branch do |f| %>
+      <%= f.input :name, label: "Nombre", placeholder: "Tienda en Lima" %>
+      <%= f.input :street_name, label: "Calle", placeholder: "Calle miraflores " %>
+      <%= f.input :neighborhood_name, label: "Colonia", placeholder: "Chacarilla" %>
+      <%= f.input :indoor_number, label: "Numero interior", placeholder: "712"  %>
+      <%= f.input :outdoor_number, label: "Numero exterior", placeholder: "15045"  %>
+      <%= f.input :postal_code, label: "Codigo postal" %>
+      <%= f.input :city, label: "Ciudad" %>
+      <%= f.input :country, label: "Pais" %>
+      <div class="form-actions text-center mt-5">
+        <%= f.submit value: "Añadir sucursal", class: "btn btn-primary text-white" %>
+      </div>
+    <% end %>
+  </div>
+</div>
