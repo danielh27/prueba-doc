@@ -1,5 +1,6 @@
 class BranchEmployeesController < ApplicationController
   before_action :set_employee, only: %i[edit update]
+  before_action :set_branches, only: %i[new create edit update]
 
   def new
     @employee = BranchEmployee.new
@@ -27,6 +28,10 @@ class BranchEmployeesController < ApplicationController
   end
 
   private
+
+  def set_branches
+    @branches = Branch.where(user: current_user).map { |branch| [branch.name, branch.id] }
+  end
 
   def set_employee
     @employee = BranchEmployee.find(params[:id])

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
 
-  resources :branches
+  resources :branches, except: %i[destroy]
   resources :branch_employees, only: %i[new create edit update]
 end
