@@ -1,4 +1,6 @@
 class BranchEmployeesController < ApplicationController
+  before_action :set_employee, only: %i[edit update]
+
   def new
     @employee = BranchEmployee.new
   end
@@ -13,7 +15,22 @@ class BranchEmployeesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @employee.update(employee_params)
+      redirect_to edit_branch_path(@employee.branch)
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def set_employee
+    @employee = BranchEmployee.find(params[:id])
+  end
 
   def employee_params
     params.require(:branch_employee).permit(:name, :rfc, :role, :branch_id)
