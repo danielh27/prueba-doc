@@ -1,0 +1,52 @@
+<div class="row justify-content-between m-5">
+  <div class="col-5 bg-white rounder p-5 shadow-sm">
+    <h2><strong> Editar sucursal</strong></h2>
+    <%= simple_form_for @branch do |f| %>
+      <%= f.input :name, label: "Nombre", placeholder: "Tienda en Lima" %>
+      <%= f.input :street_name, label: "Calle", placeholder: "Calle miraflores " %>
+      <%= f.input :neighborhood_name, label: "Colonia", placeholder: "Chacarilla" %>
+      <%= f.input :indoor_number, label: "Numero interior", placeholder: "712"  %>
+      <%= f.input :outdoor_number, label: "Numero exterior", placeholder: "15045"  %>
+      <%= f.input :postal_code, label: "Codigo postal" %>
+      <%= f.input :city, label: "Ciudad" %>
+      <%= f.input :country, label: "Pais" %>
+      <div class="form-actions text-center mt-5">
+        <%= f.submit value: "Actualizar sucursal", class: "btn bg-cyan text-white" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-6">
+    <% if @employees.empty? %>
+      <h2 class="text-muted">Esta sucursal no tiene empleados</h2>
+    <% else %>
+      <h2>Empleados de la sucursal</h2>
+      <table class="table table-borderless">
+
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th class="text-center">RFC</th>
+            <th class="text-center">Puesto</th>
+            <th class="text-center">Editar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.name %></td>
+              <td class="text-center"><%= employee.rfc %></td>
+              <td class="text-center"><%= employee.role ? employee.role : "Sin puesto asignado" %></td>
+              <td class="text-center">
+                <%= link_to edit_branch_employee_path(employee) do %>
+                  <i class="fas fa-edit edit-btn"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

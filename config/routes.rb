@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   end
 
   resources :branches
-  resources :branch_employees, only: %i[new create]
+  resources :branch_employees, only: %i[new create edit update]
 end
